@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Recorder and Transcriber</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        #transcript, #summary {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #333;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-top: 20px;
+        }
+        #audioContainer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Recorder and Transcriber</h1>
+    <input type="email" id="email" placeholder="Enter email to send transcript">
+    <button id="recordButton">Start Recording</button>
+    <button id="sendButton">Send Transcript</button>
+    <div id="transcript"></div>
+    <div id="summary"></div>
+    <div id="audioContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
