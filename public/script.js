@@ -1,7 +1,7 @@
 const recordButton = document.getElementById('recordButton');
 const sendButton = document.getElementById('sendButton');
 const transcriptDiv = document.getElementById('transcript');
-const summaryDiv = document.getElementById('summary');
+// const summaryDiv = document.getElementById('summary');
 const emailInput = document.getElementById('email');
 const audioContainer = document.getElementById('audioContainer');
 let isRecording = false;
@@ -11,8 +11,10 @@ let audioChunks = [];
 
 function uploadAudio(blob) {
     const formData = new FormData();
-    formData.append('audio', blob);
-
+    // formData.append('audio', blob, 'file');
+    formData.append('audio', blob, 'recording');
+    // formData.append('type', "wav");
+    console.log(formData);
     fetch('/upload', {
         method: 'POST',
         body: formData
@@ -21,7 +23,8 @@ function uploadAudio(blob) {
     .then(data => {
         finalTranscript = data.transcription;
         transcriptDiv.textContent = finalTranscript;
-        summaryDiv.textContent = data.summary;
+        // summaryDiv.textContent = data.summary;
+        // transcriptDiv.textContent = finalTranscript;
     })
     .catch(error => {
         console.error('Error uploading audio:', error);
@@ -35,7 +38,7 @@ recordButton.addEventListener('click', async () => {
     } else {
         finalTranscript = '';
         transcriptDiv.textContent = '';
-        summaryDiv.textContent = '';
+        // summaryDiv.textContent = '';
         audioChunks = [];
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -61,7 +64,7 @@ recordButton.addEventListener('click', async () => {
                 audioContainer.innerHTML = '';
                 audioContainer.appendChild(audio);
                 audioContainer.appendChild(downloadLink);
-
+                console.log(audioBlob);
                 // Upload the audio for processing
                 uploadAudio(audioBlob);
             };
